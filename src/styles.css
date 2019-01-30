@@ -1,4 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
-
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.centered-div {
+    display: block;
+    text-align: center;
+}
+.centered-div form {
+    display: inline-block;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+}
+.padding-top-5-perct {
+    padding-top: 5%;
+}

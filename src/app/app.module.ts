@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -16,19 +18,23 @@ import {
     MatRippleModule,
     MatFormFieldModule,
     MatTooltipModule,
-    MatSelectModule
+    MatSelectModule,
+    MatDatepickerModule,
+    MatNativeDateModule
 } from '@angular/material';
 import { ComponentsModule } from './components/components.module';
+import { ApiService } from './services/api.service';
 
 @NgModule({
     declarations: [
         AppComponent,
         LoginComponent,
         RegisterComponent,
-        AdminLayoutComponent
+        AdminLayoutComponent,
     ],
     imports: [
         BrowserModule,
+        HttpClientModule,
         AppRoutingModule,
         ComponentsModule,
         BrowserAnimationsModule,
@@ -39,8 +45,14 @@ import { ComponentsModule } from './components/components.module';
         MatInputModule,
         MatSelectModule,
         MatTooltipModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        FormsModule,
+        ReactiveFormsModule,
     ],
-    providers: [],
+    providers: [
+        ApiService
+    ],
     bootstrap: [AppComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
