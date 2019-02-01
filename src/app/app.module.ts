@@ -22,6 +22,7 @@ import {
     MatDatepickerModule,
     MatNativeDateModule
 } from '@angular/material';
+import { MatToolbarModule } from '@angular/material/toolbar'
 import { ComponentsModule } from './components/components.module';
 import { ApiService } from './services/api.service';
 
@@ -47,6 +48,7 @@ import { ApiService } from './services/api.service';
         MatTooltipModule,
         MatDatepickerModule,
         MatNativeDateModule,
+        MatToolbarModule,
         FormsModule,
         ReactiveFormsModule,
     ],

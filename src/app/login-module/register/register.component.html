@@ -1,95 +1,94 @@
+<mat-toolbar color="warn" class="display-grid text-center">
+    <div>Dune Academy</div>
+</mat-toolbar>
+
 <div class="main-content padding-top-5-perct">
     <div class="container-fluid ">
-        <form [formGroup]="registerForm" novalidate>
-            <div class="row">
-                <div class="col-md-2"></div>
-                <div class="col-md-8">
-                    <div class="card">
-                        <div class="card-header card-header-danger text-center">
-                            <h4 class="card-title">Register</h4>
-                        </div>
-                        <div class="card-body">
-                            <form [formGroup]="registerForm">
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <mat-form-field>
-                                            <input matInput placeholder="Name" type="text" [(ngModel)]="name"
-                                                formControlName="name">
-                                        </mat-form-field>
-                                        <div *ngIf="submitted && formFields.name.errors">
-                                            <div *ngIf="formFields.name.errors.required">Name is required.</div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <mat-form-field>
-                                            <input matInput placeholder="Email address" type="email" [(ngModel)]="email"
-                                                formControlName="email">
-                                        </mat-form-field>
-                                        <div *ngIf="submitted && formFields.email.errors">
-                                            <div *ngIf="formFields.email.errors.email">Invalid
-                                                email address.</div>
-                                            <div *ngIf="formFields.email.errors.required">Email Address is required.</div>
-                                        </div>
-                                    </div>
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header card-header-danger text-center">
+                        <h4 class="card-title">Register</h4>
+                    </div>
+                    <div class="card-body">
+                        <form [formGroup]="registerForm">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <mat-form-field>
+                                        <input matInput placeholder="Name" type="text" [(ngModel)]="name"
+                                            formControlName="name">
+                                    </mat-form-field>
+                                    <mat-error *ngIf="submitted && registerForm.hasError('required', 'name')">
+                                        Name is required.
+                                    </mat-error>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <mat-form-field>
-                                            <input matInput placeholder="Password" type="password" [(ngModel)]="password"
-                                                formControlName="password">
-                                        </mat-form-field>
-                                        <div *ngIf="submitted && formFields.password.errors">
-                                            <div *ngIf="formFields.password.errors.required">Password is required.</div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <mat-form-field>
-                                            <input matInput placeholder="Confirm Password" type="password" [(ngModel)]="confirmPassword"
-                                                formControlName="confirmPassword">
-                                        </mat-form-field>
-                                        <div *ngIf="submitted && formFields.confirmPassword.errors">
-                                            <div *ngIf="formFields.confirmPassword.errors.required">Confirm Password is
-                                                required.</div>
-                                        </div>
-                                    </div>
+                                <div class="col-md-6">
+                                    <mat-form-field>
+                                        <input matInput placeholder="Email address" type="text" [(ngModel)]="email"
+                                            formControlName="email">
+                                    </mat-form-field>
+                                    <mat-error *ngIf="submitted && registerForm.hasError('email', 'email')">
+                                        Invalid email address.
+                                    </mat-error>
+                                    <mat-error *ngIf="submitted && registerForm.hasError('required', 'email')">Email
+                                        Address is required.
+                                    </mat-error>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <mat-form-field>
-                                            <input matInput [matDatepicker]="picker" placeholder="Choose a date"
-                                                [(ngModel)]="dob" formControlName="dob">
-                                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                                            <mat-datepicker #picker></mat-datepicker>
-                                        </mat-form-field>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <mat-form-field>
-                                            <input matInput placeholder="City" type="text" [(ngModel)]="city"
-                                                formControlName="city">
-                                        </mat-form-field>
-                                        <div *ngIf="submitted && formFields.city.errors">
-                                            <div *ngIf="formFields.city.errors.required">City is
-                                                required.</div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <mat-form-field class="example-full-width">
-                                            <input matInput placeholder="Country" type="text" [(ngModel)]="country"
-                                                formControlName="country">
-                                        </mat-form-field>
-                                        <div *ngIf="submitted && formFields.country.errors">
-                                            <div *ngIf="formFields.country.errors.required">Country is
-                                                required.</div>
-                                        </div>
-                                    </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <mat-form-field>
+                                        <input matInput placeholder="Password" type="password" [(ngModel)]="password"
+                                            formControlName="password">
+                                    </mat-form-field>
+                                    <mat-error *ngIf="submitted && registerForm.hasError('required', 'password')">
+                                        Password is required.</mat-error>
+                                    <mat-error *ngIf="submitted && registerForm.hasError('minlength', 'password')">The
+                                        password must be at least 6 characters.</mat-error>
+                                    <mat-error *ngIf="submitted && registerForm.errors?.passwordMismatch">Password
+                                        mismatch.
+                                    </mat-error>
                                 </div>
-                                <button mat-raised-button class="btn btn-danger pull-right" (click)="submitRegister()">Register</button>
-                                <div class="clearfix"></div>
-                            </form>
-                        </div>
+                                <div class="col-md-6">
+                                    <mat-form-field>
+                                        <input matInput placeholder="Confirm Password" type="password" [(ngModel)]="confirmPassword"
+                                            formControlName="confirmPassword">
+                                    </mat-form-field>
+                                    <mat-error *ngIf="submitted && registerForm.hasError('required', 'confirmPassword')">
+                                        Confirm Password is required.
+                                    </mat-error>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <mat-form-field>
+                                        <input matInput [matDatepicker]="picker" placeholder="Choose a date"
+                                            [(ngModel)]="dob" formControlName="dob">
+                                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                        <mat-datepicker #picker></mat-datepicker>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-4">
+                                    <mat-form-field>
+                                        <input matInput placeholder="City" type="text" [(ngModel)]="city"
+                                            formControlName="city">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-4">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Country" type="text" [(ngModel)]="country"
+                                            formControlName="country">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <button mat-raised-button class="btn btn-danger pull-right" (click)="submitRegister()">Register</button>
+                            <div class="clearfix"></div>
+                        </form>
                     </div>
                 </div>
             </div>
-        </form>
+        </div>
     </div>
 </div>

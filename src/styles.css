@@ -15,3 +15,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .padding-top-5-perct {
     padding-top: 5%;
 }
+.display-grid {
+    display: grid !important;
+}
+.text-center {
+    text-align: center;
+}

@@ -3,14 +3,20 @@ import { Observable } from 'rxjs';
 import 'rxjs/add/operator/catch';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
-import { environment } from '../../environments/environment';
 
 const httpOptions = {
     headers: new HttpHeaders({
         'Accept': 'application/json',
         'Content-Type': 'application/json; charset=UTF-8',
-        'Authorization': environment.authorization_key,
-        'Cache-Control': 'no-cache'
+        'Cache-Control': 'no-cache',
+        'Access-Control-Allow-Origin': '*'
+    })
+};
+
+const httpFormOptions = {
+    headers: new HttpHeaders({
+        'Accept': 'application/json',
+        'Content-Type': 'multipart/form-data'
     })
 };
 
@@ -23,6 +29,13 @@ export class ApiService {
 
     public postCall(url, data): Observable<any> {
         return this.http.post(url, data, httpOptions)
+            .pipe(map((response: any) => {
+                return response;
+            }));
+    }
+
+    public postFormCall(url, data): Observable<any> {
+        return this.http.post(url, data, httpFormOptions)
             .pipe(map((response: any) => {
                 return response;
             }));

@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AppRestEndPoint } from '../../app-restend-points';
 import { ApiService } from '../../services/api.service';
 import * as moment from 'moment';
+import { passwordValidator } from 'src/app/services/passwordValidator';
 
 @Component({
     selector: 'app-register',
@@ -26,45 +27,47 @@ export class RegisterComponent implements OnInit {
     ngOnInit() {
         // Form validator initialisation
         this.registerForm = new FormGroup({
-            'name': new FormControl(this.name, [
-                Validators.required
-            ]),
+            'name': new FormControl(this.name, Validators.required),
             'email': new FormControl(this.email, [
                 Validators.required,
                 Validators.email
             ]),
-            'password': new FormControl(this.password, Validators.required),
-            'confirmPassword': new FormControl(this.confirmPassword, Validators.required),
-            'dob': new FormControl(this.dob, Validators.required),
-            'city': new FormControl(this.city, Validators.required),
-            'country': new FormControl(this.country, Validators.required)
-        });
+            'password': new FormControl(this.password, [
+                Validators.required,
+                Validators.minLength(6)
+            ]),
+            'confirmPassword': new FormControl(this.confirmPassword, [
+                Validators.required,
+                Validators.minLength(6)
+            ]),
+            'dob': new FormControl(''),
+            'city': new FormControl(''),
+            'country': new FormControl('')
+        }, { validators: passwordValidator });
     }
-
-    // convenience getter for easy access to form fields
-    get formFields() { return this.registerForm.controls; }
 
     // submit register
     submitRegister() {
         this.submitted = true;
-        const reqObj = {
-            'name': this.name,
-            'email': this.email,
-            'password': this.password,
-            'password_confirmation': this.confirmPassword,
-            'dob': moment(this.dob).format('YYYY-MM-DD'),
-            'city': this.city,
-            'country': this.country
-        };
-        console.log(reqObj);
-        this.apiService.postCall(AppRestEndPoint.REGISTER, reqObj).subscribe(data => {
-            if (data.user) {
-                console.log(data);
-            } else if (data.errors) {
-                console.log(data.errors.email[0]);
-            } else if (data.message) {
-                console.log(data.message);
-            }
-        });
+        if (this.registerForm.valid) {
+            const reqObj = {
+                'name': this.name,
+                'email': this.email,
+                'password': this.password,
+                'password_confirmation': this.confirmPassword,
+                'dob': this.dob ? moment(this.dob).format('YYYY-MM-DD') : '',
+                'city': this.city ? this.city : '',
+                'country': this.country ? this.country : ''
+            };
+            this.apiService.postCall(AppRestEndPoint.REGISTER, reqObj).subscribe(data => {
+                if (data.user) {
+                    console.log(data);
+                } else if (data.errors) {
+                    console.log(data.errors.email[0]);
+                } else if (data.message) {
+                    console.log(data.message);
+                }
+            });
+        }
     }
 }
