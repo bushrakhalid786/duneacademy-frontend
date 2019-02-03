@@ -33,15 +33,14 @@ export class LoginComponent implements OnInit {
 
     submitLogin() {
         this.submitted = true;
-        //const reqObj = new FormData();
-        //reqObj.append('email', this.email);
-        //reqObj.append('password', this.password);
         const reqObj = {
             'email': this.email,
-        'password' : this.password      }
+            'password': this.password
+        };
 
         this.apiService.postCall(AppRestEndPoint.LOGIN, reqObj).subscribe(data => {
             console.log(data);
+            this.router.navigate(['dashboard']);
         });
     }
 

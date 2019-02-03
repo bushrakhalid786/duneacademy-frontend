@@ -13,13 +13,6 @@ const httpOptions = {
     })
 };
 
-const httpFormOptions = {
-    headers: new HttpHeaders({
-        'Accept': 'application/json',
-        'Content-Type': 'multipart/form-data'
-    })
-};
-
 @Injectable({
     providedIn: 'root'
 })
@@ -34,10 +27,4 @@ export class ApiService {
             }));
     }
 
-    public postFormCall(url, data): Observable<any> {
-        return this.http.post(url, data, httpFormOptions)
-            .pipe(map((response: any) => {
-                return response;
-            }));
-    }
 }

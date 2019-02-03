@@ -4,6 +4,7 @@ import { AppRestEndPoint } from '../../app-restend-points';
 import { ApiService } from '../../services/api.service';
 import * as moment from 'moment';
 import { passwordValidator } from 'src/app/services/passwordValidator';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-register',
@@ -22,7 +23,9 @@ export class RegisterComponent implements OnInit {
     submitted = false;
     dob: any;
 
-    constructor(private apiService: ApiService) { }
+    constructor(
+        private apiService: ApiService,
+        private router: Router) { }
 
     ngOnInit() {
         // Form validator initialisation
@@ -61,7 +64,7 @@ export class RegisterComponent implements OnInit {
             };
             this.apiService.postCall(AppRestEndPoint.REGISTER, reqObj).subscribe(data => {
                 if (data.user) {
-                    console.log(data);
+                    this.router.navigate(['login']);
                 } else if (data.errors) {
                     console.log(data.errors.email[0]);
                 } else if (data.message) {
