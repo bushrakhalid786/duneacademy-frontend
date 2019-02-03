@@ -4,6 +4,7 @@
 
 export const environment = {
     production: false,
+    //apiUrl: 'http://duneacademyapi.test/api'
     apiUrl: 'http://www.duneacademy.com/api'
 };
 
