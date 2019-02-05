@@ -1,7 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-
+button {
+    background-color: var(--color-primary) !important;
+}
+.color-primary {
+    color: var(--color-primary) !important;
+}
+.primary-bg-color {
+    background-color: var(--color-primary) !important;
+}
 .centered-div {
     display: block;
     text-align: center;
@@ -20,4 +28,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 .text-center {
     text-align: center;
+}
+.color-white {
+    color: #ffffff !important;
 }

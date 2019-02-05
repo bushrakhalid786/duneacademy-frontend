@@ -9,7 +9,8 @@ const httpOptions = {
         'Accept': 'application/json',
         'Content-Type': 'application/json; charset=UTF-8',
         'Cache-Control': 'no-cache',
-        'Access-Control-Allow-Origin': '*'
+        'Access-Control-Allow-Origin': '*',
+        
     })
 };
 

@@ -1,4 +1,4 @@
-<mat-toolbar color="warn" class="display-grid text-center">
+<mat-toolbar color="primary" class="display-grid text-center">
     <div>Dune Academy</div>
 </mat-toolbar>
 
@@ -8,8 +8,8 @@
             <div class="col-md-4"></div>
             <div class="col-md-4">
                 <div class="card">
-                    <div class="card-header card-header-danger text-center">
-                        <h4 class="card-title">Login</h4>
+                    <div class="card-header text-center primary-bg-color">
+                        <h4 class="card-title color-white">Login</h4>
                     </div>
                     <div class="card-body">
                         <form [formGroup]="loginForm" novalidate>
@@ -38,8 +38,8 @@
                                     </mat-error>
                                 </div>
                             </div>
-                            <button mat-raised-button class="btn btn-danger" (click)="submitLogin()">Login</button>
-                            <button mat-raised-button class="btn btn-danger pull-right" routerLink="/register">Register</button>
+                            <button mat-raised-button class="btn" (click)="submitLogin()">Login</button>
+                            <button mat-raised-button class="btn pull-right" routerLink="/register">Register</button>
                             <div class="clearfix"></div>
                         </form>
                     </div>
